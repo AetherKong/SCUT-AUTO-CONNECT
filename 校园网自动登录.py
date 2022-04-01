@@ -8,7 +8,7 @@ def get_local_ip():    #获取本机ip地址
         if 'IPv4' in result[x] and result[x+2][-2] != ' ':
             ipv4 = result[x][result[x].find(':') + 2:-1]
     return ipv4
-exit_code = os.system('ping 202.38.193.28 -n 1')    #判断是否连接上互联网
+exit_code = os.system('ping 202.38.193.28 -n 1')    #判断是否连接成功
 if exit_code==0:
     os._exit(0)
 else:
