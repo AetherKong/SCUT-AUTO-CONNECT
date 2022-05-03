@@ -21,7 +21,8 @@ def indorm():
     iface = wifi.interfaces()[0]
     # 扫描WiFi
     iface.scan()
-    time.sleep(1)
+    # 扫描所用时间，过短可能扫描不到
+    time.sleep(5)
     # 获取扫描的profiles文件
     scan_wifi = iface.scan_results()
     for i in scan_wifi:
@@ -50,5 +51,6 @@ if indorm():
             os._exit(0)
         else:
             print("正在登录...")
-            os.system('''curl "https://s.scut.edu.cn:802/eportal/portal/login?callback=dr1003&login_method=1&user_account=************&user_password=******&wlan_user_ip='''+get_local_ip()+'''&wlan_user_ipv6=&wlan_user_mac=000000000000&wlan_ac_ip=172.18.255.250&wlan_ac_name=WX6108E-slot7-AC&jsVersion=4.1.3&terminal_type=1&lang=zh-cn&v=7189&lang=zh"   -H "Accept: */*"   -H "Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"   -H "Connection: keep-alive"   -H "DNT: 1"   -H "Referer: https://s.scut.edu.cn/"   -H "Sec-Fetch-Dest: script"   -H "Sec-Fetch-Mode: no-cors"   -H "Sec-Fetch-Site: same-site"   -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36 Edg/100.0.1185.50"''')
+            os.system('''curl --ssl-no-revoke "https://s.scut.edu.cn:802/eportal/portal/login?callback=dr1003&login_method=1&user_account=************&user_password=******&wlan_user_ip='''+get_local_ip()+'''&wlan_user_ipv6=&wlan_user_mac=000000000000&wlan_ac_ip=172.18.255.250&wlan_ac_name=WX6108E-slot7-AC&jsVersion=4.1.3&terminal_type=1&lang=zh-cn&v=7189&lang=zh"   -H "Accept: */*"   -H "Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6"   -H "Connection: keep-alive"   -H "DNT: 1"   -H "Referer: https://s.scut.edu.cn/"   -H "Sec-Fetch-Dest: script"   -H "Sec-Fetch-Mode: no-cors"   -H "Sec-Fetch-Site: same-site"   -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36 Edg/100.0.1185.50"''')
+            print("登录成功！")
             os._exit(0)
